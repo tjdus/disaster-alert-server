@@ -1,8 +1,9 @@
 import { Express } from "express";
 import cookieParser from "cookie-parser";
+import * as R from "../routers";
 
 export const setupRouters = (app: Express, ...args: any[]): Express => {
   // prettier-ignore
   app.use(cookieParser());
-  return app;
+  return app.use("/nearby", R.nearbyShelterRouter(...args));
 };

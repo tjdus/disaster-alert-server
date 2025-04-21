@@ -15,11 +15,21 @@ export async function importEmergencyRoomData() {
     const jsonData = JSON.parse(fileData);
 
     // Extract the "DATA" array from the JSON
-    const facilities = jsonData.DATA;
+    const shelters = jsonData.DATA;
 
     // Save each facility to MongoDB
-    for (let facility of facilities) {
-      const newData = new EmergencyRoom(facility);
+    for (let shelter of shelters) {
+      const { wgs84lat, wgs84lon } = shelter;
+
+      // GeoJSON 형식의 location 추가
+      const newData = new EmergencyRoom({
+        ...shelter, // 기존 데이터 필드 그대로 넣기
+        location: {
+          type: "Point",
+          coordinates: [parseFloat(wgs84lon), parseFloat(wgs84lat)], // [경도, 위도] 순서로 저장
+        },
+      });
+
       await newData.save();
     }
   } catch (err) {

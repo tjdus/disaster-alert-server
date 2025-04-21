@@ -1,7 +1,5 @@
 import fs from "fs";
 import path from "path";
-import csvParser from "csv-parser";
-import xlsx from "xlsx";
 import mongoose, { models } from "mongoose";
 import { connectAndUseDB } from "../mongodb";
 import { importColdWaveShelterData } from "./coldWaveShelter";

@@ -15,11 +15,17 @@ export async function importColdWaveShelterData() {
     const jsonData = JSON.parse(fileData);
 
     // Extract the "DATA" array from the JSON
-    const facilities = jsonData.DATA;
+    const shelters = jsonData.DATA;
 
     // Save each facility to MongoDB
-    for (let facility of facilities) {
-      const newData = new ColdWaveShelter(facility);
+    for (let shelter of shelters) {
+      const newData = new ColdWaveShelter({
+        ...shelter, // 기존 데이터 필드 그대로 넣기
+        location: {
+          type: "Point",
+          coordinates: [shelter.lot, shelter.lat], // 경도, 위도 순서로 설정
+        },
+      });
       await newData.save();
     }
   } catch (err) {
