@@ -48,12 +48,6 @@ coverage/
 # Debug
 .debug/
 
-# Data files
-src/data/*.json
-src/data/*.csv
-src/data/*.xlsx
-!src/data/.gitkeep
-
 # Temp files
 tmp/
 temp/
