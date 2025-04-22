@@ -35,6 +35,8 @@ export async function importDustShelterData() {
       // GeoJSON 형식의 location 추가
       const newData = new DustShelter({
         ...shelter, // 기존 데이터 필드 그대로 넣기
+        lat: latitude,
+        lot: longitude,
         location: {
           type: "Point",
           coordinates: [longitude, latitude], // [경도, 위도] 순서로 저장

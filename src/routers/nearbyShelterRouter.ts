@@ -15,7 +15,6 @@ import {
   IEarthquakeShelter,
 } from "../schemas/earthquakeShelter";
 import { ColdWaveShelter, IColdWaveShelter } from "../schemas/coldWaveShelter";
-import { ShelterWithDistance } from "../interfaces/extended";
 import HeatShelter, { IHeatShelter } from "../schemas/heatShelter";
 import { DustShelter, IDustShelter } from "../schemas/dustShelter";
 import { EmergencyRoom, IEmergencyRoom } from "../schemas/emergencyRoom";

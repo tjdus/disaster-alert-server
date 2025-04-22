@@ -15,6 +15,8 @@ export interface IDustShelter extends Document {
   addr?: string; // 주소
   rmrk?: string; // 비고
   utztn_psblty_nope?: string; // 수용 가능 인원
+  lat: number; // 위도
+  lot: number; // 경도
 }
 
 const DustShelterSchema = new mongoose.Schema({
@@ -31,6 +33,8 @@ const DustShelterSchema = new mongoose.Schema({
   addr: { type: String },
   rmrk: { type: String },
   utztn_psblty_nope: { type: String },
+  lat: { type: Number, require: true }, // 위도
+  lot: { type: Number, require: true }, // 경도
   location: {
     // GeoJSON 형식으로 변환된 위치 정보
     type: { type: String, default: "Point" },
