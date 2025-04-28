@@ -8,6 +8,7 @@ import { importEarthquakeShelterData } from "./earthquakeShelter";
 import { importEarthquakeOutdoorShelterData } from "./earthquakeOutdoorShelter";
 import { importHeatShelterData } from "./heatShelter";
 import { importEmergencyRoomData } from "./emergencyRoom";
+import { importFloodShelterData } from "./floodShelter";
 
 const DATA_DIR = path.join(__dirname, "../data");
 const MONGO_URL =
@@ -32,6 +33,7 @@ async function importData() {
   await importEarthquakeOutdoorShelterData();
   await importHeatShelterData();
   await importEmergencyRoomData();
+  await importFloodShelterData();
 
   mongoose.disconnect();
 }
