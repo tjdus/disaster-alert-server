@@ -5,12 +5,15 @@ import { connectAndUseDB } from "./mongodb"; // MongoDB 연결 관련 코드
 import mongoose from "mongoose"; // MongoDB와 실제 연결을 담당할 mongoose 라이브러리
 import { makeDir } from "./utils";
 import { getPublicDirPath } from "./config";
+import dotenv from "dotenv";
 
 const MONGO_URL =
   process.env.MONGO_URL || "mongodb://localhost:27017/disaster-alert"; // MongoDB URL
 const PORT = process.env.PORT || 4000;
 
 makeDir(getPublicDirPath());
+
+dotenv.config();
 
 export const connectDB = async () => {
   try {
