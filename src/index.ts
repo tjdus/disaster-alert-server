@@ -7,8 +7,6 @@ import { makeDir } from "./utils";
 import { getPublicDirPath } from "./config";
 import dotenv from "dotenv";
 
-const MONGO_URL =
-  process.env.MONGO_URL || "mongodb://localhost:27017/disaster-alert"; // MongoDB URL
 const PORT = process.env.PORT || 4000;
 
 makeDir(getPublicDirPath());
@@ -17,7 +15,8 @@ dotenv.config();
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect(MONGO_URL);
+    const mongodb = process.env.MONGO_URL || "";
+    await mongoose.connect(mongodb);
     console.log("✅ MongoDB 연결 성공");
   } catch (error) {
     console.error("❌ MongoDB 연결 실패:", error);
