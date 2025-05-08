@@ -9,14 +9,14 @@ import { importEarthquakeOutdoorShelterData } from "./earthquakeOutdoorShelter";
 import { importHeatShelterData } from "./heatShelter";
 import { importEmergencyRoomData } from "./emergencyRoom";
 import { importFloodShelterData } from "./floodShelter";
+import dotenv from "dotenv";
 
-const DATA_DIR = path.join(__dirname, "../data");
-const MONGO_URL =
-  process.env.MONGO_URL || "mongodb://localhost:27017/disaster-alert";
+dotenv.config();
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect(MONGO_URL);
+    const mongodb = process.env.MONGO_URL || "";
+    await mongoose.connect(mongodb);
     console.log("✅ MongoDB 연결 성공");
   } catch (error) {
     console.error("❌ MongoDB 연결 실패:", error);

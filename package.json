@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e ts --exec ts-node src --watch src",
+    "start": "node dist/index.js",
     "start-mac": "nodemon -e ts --exec 'ts-node src/index.ts' --watch src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "load": "ts-node src/uploads/loadData.ts"
+    "load": "ts-node src/uploads/loadData.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,13 @@
     "csv-parser": "^3.2.0",
     "dotenv": "^16.5.0",
     "express": "^4.18.1",
+    "express-rate-limit": "^7.5.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^4.5.0",
     "mongoose": "^8.12.1",
-    "proj4": "^2.15.0"
+    "proj4": "^2.15.0",
+    "rate-limit-redis": "^4.2.0",
+    "redis": "^5.0.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
