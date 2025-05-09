@@ -76,20 +76,20 @@ export async function getPapagoTranslation(
 export const papagoTranslationRouter = (...args: any[]) => {
   const router = Router();
 
-  // Rate limiting middleware (100 requests per hour per IP)
-  const limiter = rateLimit({
-    windowMs: 60 * 60 * 1000, // 1 hour
-    max: 100, // limit each IP to 100 requests per windowMs
-    standardHeaders: true,
-    legacyHeaders: false,
-    store: new RedisStore({
-      sendCommand: (...args: any[]) => redisClient.sendCommand(args),
-    }),
-    message: { error: "Too many translation requests, please try again later" },
-  });
+  // // Rate limiting middleware (100 requests per hour per IP)
+  // const limiter = rateLimit({
+  //   windowMs: 60 * 60 * 1000, // 1 hour
+  //   max: 100, // limit each IP to 100 requests per windowMs
+  //   standardHeaders: true,
+  //   legacyHeaders: false,
+  //   store: new RedisStore({
+  //     sendCommand: (...args: any[]) => redisClient.sendCommand(args),
+  //   }),
+  //   message: { error: "Too many translation requests, please try again later" },
+  // });
 
   // Apply rate limiter to translation endpoint
-  router.post("/translate", limiter, async (req, res) => {
+  router.post("/translate", async (req, res) => {
     const { text, targetLang } = req.body;
 
     if (!text || !targetLang) {
