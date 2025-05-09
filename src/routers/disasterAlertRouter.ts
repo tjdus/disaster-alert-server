@@ -82,12 +82,16 @@ export const disasterAlertRouter = (...args: any[]) => {
   const router = Router();
 
   return router.get("/", async (req, res) => {
-    const { date, region } = req.query;
+    const { crtDt, rgnNm, numberOfRows, pageNo } = req.query;
 
     try {
       const params: DisasterAlertParams = {
-        crtDt: date as string,
-        rgnNm: region as string,
+        crtDt: crtDt as string | undefined,
+        rgnNm: rgnNm as string | undefined,
+        numOfRows: numberOfRows
+          ? parseInt(numberOfRows as string, 10)
+          : undefined,
+        pageNo: pageNo ? parseInt(pageNo as string, 10) : undefined,
       };
       const disasterAlerts = await getDisasterAlerts(params);
       res.json(disasterAlerts);
